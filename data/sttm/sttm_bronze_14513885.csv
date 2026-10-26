@@ -1,0 +1,21 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,products,product_id,bronze,products,product_id,direct_copy,Copy source value as-is; primary key field
+landing,products,product_name,bronze,products,product_name,direct_copy,Copy source value as-is; human-readable product description
+landing,products,category,bronze,products,category,direct_copy,Copy source value as-is; product classification field
+landing,products,standard_price,bronze,products,standard_price,direct_copy,Copy source numeric value as-is; reference/list price for product
+landing,sales_data,transaction_id,bronze,sales_data,transaction_id,direct_copy,Copy source value as-is; null handling preserves 4.3% missing values; contains TXN and RET prefixes
+landing,sales_data,transaction_date,bronze,sales_data,transaction_date,direct_copy,Copy source value as-is; mixed date formats (MM/DD/YYYY and YYYY-MM-DD) preserved for bronze layer
+landing,sales_data,store_id,bronze,sales_data,store_id,direct_copy,Copy source value as-is; null handling preserves 2.69% missing values indicating online/unattributed sales
+landing,sales_data,product_id,bronze,sales_data,product_id,direct_copy,Copy source value as-is; foreign key reference to products table with 100% population
+landing,sales_data,product_name,bronze,sales_data,product_name,direct_copy,Copy source value as-is; denormalized product name field
+landing,sales_data,category,bronze,sales_data,category,direct_copy,Copy source value as-is; denormalized category with 21 unique values preserving case-sensitivity inconsistencies
+landing,sales_data,quantity,bronze,sales_data,quantity,direct_copy,Copy source numeric value as-is; includes negative values for returns (range -4 to +8)
+landing,sales_data,unit_price,bronze,sales_data,unit_price,direct_copy,Copy source numeric value as-is; actual transaction price with wide range $0.01–$9999.99
+landing,sales_data,total_amount,bronze,sales_data,total_amount,direct_copy,Copy source numeric value as-is; includes negative values for return credit amounts
+landing,sales_data,customer_segment,bronze,sales_data,customer_segment,direct_copy,Copy source value as-is; 16 unique customer segment types preserved
+landing,sales_data,payment_method,bronze,sales_data,payment_method,direct_copy,"Copy source value as-is; 4 unique payment methods (Apple Pay, PayPal, etc.)"
+landing,stores,store_id,bronze,stores,store_id,direct_copy,Copy source value as-is; primary key for store dimension
+landing,stores,store_name,bronze,stores,store_name,direct_copy,Copy source value as-is; human-readable store name
+landing,stores,region,bronze,stores,region,direct_copy,Copy source value as-is; geographic region classification (4 unique values)
+landing,stores,city,bronze,stores,city,direct_copy,Copy source value as-is; store city location (10 unique values)
+landing,stores,state,bronze,stores,state,direct_copy,Copy source value as-is; two-letter state abbreviation (9 unique values)

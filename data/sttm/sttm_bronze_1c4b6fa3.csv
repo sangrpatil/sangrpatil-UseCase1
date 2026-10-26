@@ -1,0 +1,21 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,products,product_id,bronze,products,product_id,direct_copy,Cast to string; retain as-is
+landing,products,product_name,bronze,products,product_name,direct_copy,Cast to string; retain as-is
+landing,products,category,bronze,products,category,direct_copy,Cast to string; retain as-is
+landing,products,standard_price,bronze,products,standard_price,direct_copy,Cast to float64; retain as-is
+landing,sales_data,transaction_id,bronze,sales_data,transaction_id,direct_copy,Cast to string; retain NULL values (4.3% null_pct)
+landing,sales_data,transaction_date,bronze,sales_data,transaction_date,direct_copy,Cast to string; retain as-is (mixed format: MM/DD/YYYY and YYYY-MM-DD)
+landing,sales_data,store_id,bronze,sales_data,store_id,direct_copy,Cast to string; retain NULL values (2.69% null_pct)
+landing,sales_data,product_id,bronze,sales_data,product_id,direct_copy,Cast to string; retain as-is
+landing,sales_data,product_name,bronze,sales_data,product_name,direct_copy,Cast to string; retain as-is
+landing,sales_data,category,bronze,sales_data,category,direct_copy,Cast to string; retain as-is (21 unique values vs 5 in products)
+landing,sales_data,quantity,bronze,sales_data,quantity,direct_copy,Cast to int64; retain as-is (includes negative values for returns)
+landing,sales_data,unit_price,bronze,sales_data,unit_price,direct_copy,"Cast to float64; retain as-is (range $0.01–$9,999.99)"
+landing,sales_data,total_amount,bronze,sales_data,total_amount,direct_copy,Cast to float64; retain as-is (includes negative amounts for returns)
+landing,sales_data,customer_segment,bronze,sales_data,customer_segment,direct_copy,Cast to string; retain as-is (16 unique values)
+landing,sales_data,payment_method,bronze,sales_data,payment_method,direct_copy,Cast to string; retain as-is (4 distinct methods)
+landing,stores,store_id,bronze,stores,store_id,direct_copy,Cast to string; retain as-is
+landing,stores,store_name,bronze,stores,store_name,direct_copy,Cast to string; retain as-is
+landing,stores,region,bronze,stores,region,direct_copy,Cast to string; retain as-is (4 distinct values)
+landing,stores,city,bronze,stores,city,direct_copy,Cast to string; retain as-is
+landing,stores,state,bronze,stores,state,direct_copy,Cast to string; retain as-is (9 unique values)

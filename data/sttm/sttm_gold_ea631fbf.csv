@@ -1,0 +1,16 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+gold,,,gold,best_selling_product,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,sales_data_silver,product_id,gold,best_selling_product,product_id,Direct,Passthrough from sales_data_silver.product_id
+silver,sales_data_silver,product_name,gold,best_selling_product,product_name,Direct,Passthrough from sales_data_silver.product_name
+silver,sales_data_silver,category,gold,best_selling_product,category,Direct,Passthrough from sales_data_silver.category
+silver,sales_data_silver,quantity,gold,best_selling_product,total_quantity_sold,Indirect,"SUM(sales_data_silver.quantity) grouped by product_id, product_name to determine best-selling product by volume"
+silver,sales_data_silver,total_amount,gold,best_selling_product,total_revenue,Indirect,"SUM(sales_data_silver.total_amount) grouped by product_id, product_name to determine best-selling product by revenue"
+silver,sales_data_silver,unit_price,gold,best_selling_product,avg_unit_price,Indirect,AVG(sales_data_silver.unit_price) grouped by product_id for context on pricing
+silver,sales_data_silver,transaction_date,gold,best_selling_product,date_range_start,Indirect,"MIN(sales_data_silver.transaction_date) grouped by product_id, excluding NaT values"
+silver,sales_data_silver,transaction_date,gold,best_selling_product,date_range_end,Indirect,"MAX(sales_data_silver.transaction_date) grouped by product_id, excluding NaT values"
+silver,products_silver,product_id,gold,best_selling_product,fk_product_id,Direct,Join key: sales_data_silver.product_id = products_silver.product_id
+silver,products_silver,standard_price,gold,best_selling_product,standard_price,Direct,Passthrough from products_silver.standard_price after joining on product_id
+silver,sales_data_silver,customer_segment,gold,best_selling_product,customer_segments,Indirect,COLLECT_LIST(DISTINCT sales_data_silver.customer_segment) grouped by product_id to show which customer segments purchased the product
+silver,sales_data_silver,store_id,gold,best_selling_product,num_stores_sold,Indirect,COUNT(DISTINCT sales_data_silver.store_id) grouped by product_id to show distribution across stores
+silver,sales_data_silver,transaction_id,gold,best_selling_product,transaction_count,Indirect,"COUNT(sales_data_silver.transaction_id) grouped by product_id, excluding null and NaT transaction_dates"
+silver,sales_data_silver,_load_timestamp,gold,best_selling_product,gold_load_timestamp,Direct,Passthrough from sales_data_silver._load_timestamp for data lineage

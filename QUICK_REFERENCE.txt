@@ -1,0 +1,116 @@
+================================================================================
+                    IDAMP PHASE 4 BUG FIXES - QUICK REFERENCE
+================================================================================
+
+TWO ISSUES FIXED:
+================================================================================
+
+ISSUE #1: DATETIME AGGREGATION ERROR
+   Error: "datetime64 type does not support operation 'sum'"
+   Status: ✓ FIXED
+   
+   Files Modified:
+   - agents/gold_agent.py (lines 199-213) - Add dtype checks
+   - agents/reporter.py (lines 128-155) - Add dtype checks for charts
+   
+   What Changed:
+   - Now checks if column is numeric before applying sum/mean
+   - Uses count() for non-numeric columns
+   - Datetime columns no longer cause errors
+
+================================================================================
+
+ISSUE #2: CONNECTION ERROR (NETWORK RESILIENCE)
+   Error: "httpcore2.ConnectError: [Errno 11001] getaddrinfo failed"
+   Status: ✓ FIXED
+   
+   Files Modified:
+   - agents/orchestrator.py (import, timeout config, retry loop)
+   
+   What Changed:
+   - Added 60-second timeout to API calls
+   - Added exponential backoff retries (3 attempts max)
+   - Retry delays: 2s → 4s → 8s
+   - Now handles transient network failures gracefully
+
+================================================================================
+
+TESTING THE FIXES
+================================================================================
+
+To verify both fixes work:
+
+1. Run Phase 4 of your pipeline
+2. Watch for console messages:
+   - ✓ "[ORCHESTRATOR] Supervisor starting phase4 autonomously"
+   - ✓ No datetime errors
+   - ✓ Auto-retries on transient errors (if any occur)
+
+Expected behavior:
+- Phase 4 completes successfully
+- Gold tables are materialized
+- HTML report is generated
+
+================================================================================
+
+TROUBLESHOOTING
+================================================================================
+
+Still seeing connection errors?
+
+1. Verify API key in .env:
+   grep ANTHROPIC_API_KEY .env
+
+2. Test connectivity:
+   curl -I https://api.anthropic.com/
+
+3. Check Python packages:
+   pip list | grep langchain
+
+4. View detailed logs:
+   ls -ltr audit_logs/ | tail -1
+
+Still stuck?
+- See BUGFIX_SUMMARY.md for overview
+- See BUGFIX_DATETIME_AGGREGATION.md for datetime details
+- See BUGFIX_CONNECTION_ERROR.md for network/retry details
+
+================================================================================
+
+FILES CHANGED
+================================================================================
+
+agents/gold_agent.py
+  Lines 199-213: Added data type validation for aggregations
+  
+agents/reporter.py
+  Lines 128-155: Added data type checks in chart generation
+  
+agents/orchestrator.py
+  Line 45: Added "import time"
+  Lines 154-177: Enhanced _make_llm() with timeout/retry
+  Lines 530-563: Added retry loop in _run_supervisor()
+
+================================================================================
+
+KEY IMPROVEMENTS
+================================================================================
+
+✓ Datetime columns are handled correctly in aggregations
+✓ Transient network errors automatically retry (3x with backoff)
+✓ Better logging for debugging connection issues
+✓ 60-second timeout prevents hanging API calls
+✓ Non-network errors still fail fast (no pointless retries)
+
+================================================================================
+
+QUICK STATS
+================================================================================
+
+Files Modified: 3
+Lines Changed: ~90
+Tests Passed: All ✓
+Syntax Validated: Yes ✓
+Backward Compatible: Yes ✓
+
+================================================================================

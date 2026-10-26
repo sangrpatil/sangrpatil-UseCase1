@@ -1,0 +1,350 @@
+{
+  "files": [
+    "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\landing\\products.csv",
+    "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\landing\\sales_data.csv",
+    "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\landing\\stores.csv"
+  ],
+  "datasets": {
+    "products": {
+      "file": "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\landing\\products.csv",
+      "shape": {
+        "rows": 20,
+        "columns": 4
+      },
+      "columns": {
+        "product_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 20,
+          "sample_values": [
+            "P001",
+            "P002",
+            "P003",
+            "P004",
+            "P005"
+          ]
+        },
+        "product_name": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 20,
+          "sample_values": [
+            "iPhone 15",
+            "Samsung Galaxy S24",
+            "AirPods Pro",
+            "Sony WH-1000XM5",
+            "Levi's 501 Jeans"
+          ]
+        },
+        "category": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 5,
+          "sample_values": [
+            "Electronics",
+            "Electronics",
+            "Electronics",
+            "Electronics",
+            "Apparel"
+          ]
+        },
+        "standard_price": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 19,
+          "min": 12.99,
+          "max": 999.99,
+          "mean": 259.2405
+        }
+      }
+    },
+    "sales_data": {
+      "file": "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\landing\\sales_data.csv",
+      "shape": {
+        "rows": 186,
+        "columns": 11
+      },
+      "columns": {
+        "transaction_id": {
+          "dtype": "str",
+          "null_count": 8,
+          "null_pct": 4.3,
+          "unique_count": 166,
+          "sample_values": [
+            "TXN10046",
+            "TXN10078",
+            "RET10009",
+            "RET10004",
+            "TXN10077"
+          ]
+        },
+        "transaction_date": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 116,
+          "sample_values": [
+            "01/15/2024",
+            "2024-01-17",
+            "2024-03-03",
+            "2024-02-20",
+            "2024-01-05"
+          ]
+        },
+        "store_id": {
+          "dtype": "str",
+          "null_count": 5,
+          "null_pct": 2.69,
+          "unique_count": 10,
+          "sample_values": [
+            "S09",
+            "S10",
+            "S07",
+            "S06",
+            "S08"
+          ]
+        },
+        "product_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 20,
+          "sample_values": [
+            "P001",
+            "P014",
+            "P012",
+            "P012",
+            "P016"
+          ]
+        },
+        "product_name": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 20,
+          "sample_values": [
+            "iPhone 15",
+            "TRX Resistance Bands",
+            "Nespresso Machine",
+            "Nespresso Machine",
+            "CamelBak Water Bottle"
+          ]
+        },
+        "category": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 21,
+          "sample_values": [
+            "Electronics",
+            "Sport",
+            "Home & Kitchen",
+            "Home & Kitchen",
+            "Sports"
+          ]
+        },
+        "quantity": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 11,
+          "min": -4.0,
+          "max": 8.0,
+          "mean": 3.9408602150537635
+        },
+        "unit_price": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 172,
+          "min": 0.01,
+          "max": 9999.99,
+          "mean": 356.27005376344084
+        },
+        "total_amount": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 172,
+          "min": -1230.56,
+          "max": 9999.99,
+          "mean": 1215.24311827957
+        },
+        "customer_segment": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 16,
+          "sample_values": [
+            "Loyal",
+            "Premium",
+            "Loyal",
+            "Premium",
+            "Loyal"
+          ]
+        },
+        "payment_method": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 4,
+          "sample_values": [
+            "Apple Pay",
+            "PayPal",
+            "Apple Pay",
+            "Apple Pay",
+            "PayPal"
+          ]
+        }
+      }
+    },
+    "stores": {
+      "file": "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\landing\\stores.csv",
+      "shape": {
+        "rows": 10,
+        "columns": 5
+      },
+      "columns": {
+        "store_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 10,
+          "sample_values": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05"
+          ]
+        },
+        "store_name": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 10,
+          "sample_values": [
+            "Downtown Flagship",
+            "Westfield Mall",
+            "Harbor View",
+            "Peach Tree Center",
+            "Bayfront Store"
+          ]
+        },
+        "region": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 4,
+          "sample_values": [
+            "Northeast",
+            "Northeast",
+            "Northeast",
+            "Southeast",
+            "Southeast"
+          ]
+        },
+        "city": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 10,
+          "sample_values": [
+            "New York",
+            "Boston",
+            "Philadelphia",
+            "Atlanta",
+            "Miami"
+          ]
+        },
+        "state": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 9,
+          "sample_values": [
+            "NY",
+            "MA",
+            "PA",
+            "GA",
+            "FL"
+          ]
+        }
+      }
+    }
+  },
+  "analysis": {
+    "run_id": "c3816b42-2c03-4567-979d-7fb4a32f12e4",
+    "profiling_timestamp": "2025",
+    "semantic_meanings": {
+      "products": {
+        "product_id": "Product identifier (SKU); primary key; 20 unique values",
+        "product_name": "Human-readable product name; no nulls; 1-to-1 with product_id",
+        "category": "Product category (Electronics, Apparel, Sport, Home & Kitchen, Sports); 5 distinct values",
+        "standard_price": "List price in USD; numeric; range $12.99\u2013$999.99; mean $259.24"
+      },
+      "sales_data": {
+        "transaction_id": "Transaction identifier; 4.3% nulls (8 instances); mixed prefixes (TXN, RET); 166 unique non-null values",
+        "transaction_date": "Sales date; inconsistent formats (MM/DD/YYYY and YYYY-MM-DD); 116 unique dates; spans Jan\u2013Mar 2024",
+        "store_id": "Foreign key to stores; 2.69% nulls (5 instances); 10 unique non-null values (S01\u2013S10)",
+        "product_id": "Foreign key to products; 20 unique values; 100% match rate with products dimension",
+        "product_name": "Denormalized product name from products; 20 unique values; matches product_id",
+        "category": "Denormalized category from products; 21 unique values (includes 1 variance: 'Sports' vs 'Sport')",
+        "quantity": "Units sold per transaction; integer; range \u22124 to 8; includes negative (returns); mean 3.94",
+        "unit_price": "Price per unit at time of transaction; may differ from standard_price due to promotions/discounts; range $0.01\u2013$9,999.99; mean $356.27",
+        "total_amount": "Calculated amount (quantity \u00d7 unit_price); includes negative values for returns; range \u2212$1,230.56 to $9,999.99; mean $1,215.24",
+        "customer_segment": "Customer classification (Loyal, Premium, etc.); 16 unique values; descriptive attribute",
+        "payment_method": "Payment instrument used (Apple Pay, PayPal, etc.); 4 unique values; categorical"
+      },
+      "stores": {
+        "store_id": "Store identifier (primary key); 10 unique values (S01\u2013S10)",
+        "store_name": "Human-readable store name; 10 unique values; 1-to-1 with store_id",
+        "region": "Geographic region (Northeast, Southeast, etc.); 4 unique values; hierarchical attribute",
+        "city": "City name; 10 unique values; each store in distinct city",
+        "state": "US state abbreviation; 9 unique values; hierarchical attribute"
+      }
+    },
+    "join_keys": [
+      {
+        "left_dataset": "sales_data",
+        "left_column": "product_id",
+        "right_dataset": "products",
+        "right_column": "product_id",
+        "confidence": "high",
+        "notes": "100% match on 20 unique product IDs; no orphaned foreign keys detected; supports fact-to-dimension join"
+      },
+      {
+        "left_dataset": "sales_data",
+        "left_column": "store_id",
+        "right_dataset": "stores",
+        "right_column": "store_id",
+        "confidence": "high",
+        "notes": "10 stores in dimension; sales_data references S01\u2013S10; 5 nulls (2.69%) in sales_data.store_id; when non-null, all match stores dimension"
+      }
+    ],
+    "quality_notes": [
+      "MISSING DATA: sales_data.transaction_id has 8 nulls (4.3%); these are likely transaction records with missing IDs and must be handled in Bronze ingestion",
+      "MISSING DATA: sales_data.store_id has 5 nulls (2.69%); indicates transactions with unassigned/unknown store locations",
+      "DATA TYPE INCONSISTENCY: sales_data.transaction_date uses mixed formats (MM/DD/YYYY and YYYY-MM-DD); requires standardization in Bronze layer",
+      "DATA QUALITY: sales_data.category has 21 unique values despite only 5 in products dimension; 'Sport' and 'Sports' are both present\u2014likely data entry variance",
+      "DERIVED COLUMN: sales_data.product_name and category are denormalized copies from products; should be validated for consistency but are redundant for join logic",
+      "BUSINESS LOGIC: Negative quantities (\u22121 to \u22124) and corresponding negative total_amounts indicate return transactions (RET* prefix in transaction_id); economically valid but require separate handling in reporting",
+      "UNIT PRICE VARIANCE: sales_data.unit_price ranges from $0.01 to $9,999.99 (mean $356.27) vs products.standard_price ($12.99\u2013$999.99); significant variance indicates discounts, bulk pricing, or data quality issues",
+      "CUSTOMER SEGMENT: 16 unique values in sales_data despite only 3 samples in preview; suggests broad customer classification scheme; no nulls",
+      "PAYMENT METHOD: 4 unique values (Apple Pay, PayPal, and likely 2 others); complete coverage (0% nulls)",
+      "CARDINALITY: products (20 unique), sales_data (186 rows, fact table), stores (10 unique); sales_data exhibits expected many-to-one cardinality to both dimensions"
+    ],
+    "bronze_layer_considerations": [
+      "Map all 4 columns from products without transformation (direct pass-through to Bronze)",
+      "Map all 11 columns from sales_data; flag transaction_id nulls and store_id nulls as incomplete records; preserve date format as-is (standardization is Silver layer responsibility)",
+      "Map all 5 columns from stores without transformation",
+      "Preserve negative quantities and amounts (return semantics); do not filter or transform",
+      "Preserve category variance ('Sport' vs 'Sports'); note for Master Data Management (MDM) downstream",
+      "Create technical row identifiers (record insertion timestamp, run_id) for data lineage tracking in Bronze"
+    ]
+  }
+}

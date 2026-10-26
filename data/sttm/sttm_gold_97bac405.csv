@@ -1,0 +1,15 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+gold,,,gold,best_selling_product,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,sales_data_silver,product_name,gold,best_selling_product,product_name,Direct,Passthrough from sales_data_silver.product_name
+silver,sales_data_silver,product_id,gold,best_selling_product,product_id,Direct,Passthrough from sales_data_silver.product_id
+silver,sales_data_silver,category,gold,best_selling_product,category,Direct,Passthrough from sales_data_silver.category
+silver,sales_data_silver,quantity,gold,best_selling_product,total_quantity_sold,Indirect,"Aggregate SUM of quantity grouped by product_name, filtered for positive quantities only (quantity > 0) to exclude returns"
+silver,sales_data_silver,total_amount,gold,best_selling_product,total_revenue,Indirect,"Aggregate SUM of total_amount grouped by product_name, filtered for positive amounts only (total_amount > 0) to exclude returns"
+silver,sales_data_silver,unit_price,gold,best_selling_product,avg_unit_price,Indirect,Aggregate AVG of unit_price grouped by product_name
+silver,products_silver,standard_price,gold,best_selling_product,standard_price,Direct,Passthrough from products_silver.standard_price via join on product_name
+silver,sales_data_silver,transaction_date,gold,best_selling_product,date_range_start,Indirect,Aggregate MIN of transaction_date grouped by product_name
+silver,sales_data_silver,transaction_date,gold,best_selling_product,date_range_end,Indirect,Aggregate MAX of transaction_date grouped by product_name
+silver,sales_data_silver,customer_segment,gold,best_selling_product,top_customer_segment,Indirect,Aggregate MODE of customer_segment grouped by product_name to identify primary customer segment
+silver,sales_data_silver,product_name,gold,best_selling_product,transaction_count,Indirect,"Aggregate COUNT of product_name transactions, filtered for quantity > 0 to exclude returns"
+silver,sales_data_silver,product_id,gold,best_selling_product,fk_product_id,Indirect,Join key: sales_data_silver.product_id -> products_silver.product_id
+silver,sales_data_silver,store_id,gold,best_selling_product,top_selling_region,Indirect,Join stores_silver on store_id; Aggregate MODE of region grouped by product_name

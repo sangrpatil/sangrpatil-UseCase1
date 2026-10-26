@@ -1,0 +1,30 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+products_bronze,products_bronze.parquet,,products_silver,products_silver,pk_products_silver_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+products_bronze,products_bronze.parquet,product_id,products_silver,products_silver,product_id,Direct,Type cast to INTEGER; retain original value
+products_bronze,products_bronze.parquet,product_name,products_silver,products_silver,product_name,Direct,Type cast to VARCHAR; trim whitespace; handle nulls as empty string
+products_bronze,products_bronze.parquet,category,products_silver,products_silver,category,Direct,Type cast to VARCHAR; trim whitespace; handle nulls as empty string
+products_bronze,products_bronze.parquet,standard_price,products_silver,products_silver,standard_price,Direct,"Type cast to DECIMAL(10,2); handle nulls as 0.00"
+products_bronze,products_bronze.parquet,_load_timestamp,products_silver,products_silver,_load_timestamp,Direct,Type cast to TIMESTAMP; standardise to ISO 8601 format (YYYY-MM-DD HH:MM:SS)
+products_bronze,products_bronze.parquet,_source_file,products_silver,products_silver,_source_file,Direct,Type cast to VARCHAR; retain original value
+sales_data_bronze,sales_data_bronze.parquet,,sales_data_silver,sales_data_silver,pk_sales_data_silver_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+sales_data_bronze,sales_data_bronze.parquet,transaction_id,sales_data_silver,sales_data_silver,transaction_id,Direct,Type cast to INTEGER; retain original value
+sales_data_bronze,sales_data_bronze.parquet,transaction_date,sales_data_silver,sales_data_silver,transaction_date,Direct,Type cast to DATE; standardise to ISO 8601 format (YYYY-MM-DD)
+sales_data_bronze,sales_data_bronze.parquet,store_id,sales_data_silver,sales_data_silver,store_id,Direct,Type cast to INTEGER; retain original value
+sales_data_bronze,sales_data_bronze.parquet,product_id,sales_data_silver,sales_data_silver,product_id,Direct,Type cast to INTEGER; retain original value
+sales_data_bronze,sales_data_bronze.parquet,product_name,sales_data_silver,sales_data_silver,product_name,Direct,Type cast to VARCHAR; trim whitespace; handle nulls as empty string
+sales_data_bronze,sales_data_bronze.parquet,category,sales_data_silver,sales_data_silver,category,Direct,Type cast to VARCHAR; trim whitespace; handle nulls as empty string
+sales_data_bronze,sales_data_bronze.parquet,quantity,sales_data_silver,sales_data_silver,quantity,Direct,Type cast to INTEGER; handle nulls as 0
+sales_data_bronze,sales_data_bronze.parquet,unit_price,sales_data_silver,sales_data_silver,unit_price,Direct,"Type cast to DECIMAL(10,2); handle nulls as 0.00"
+sales_data_bronze,sales_data_bronze.parquet,total_amount,sales_data_silver,sales_data_silver,total_amount,Direct,"Type cast to DECIMAL(10,2); handle nulls as 0.00"
+sales_data_bronze,sales_data_bronze.parquet,customer_segment,sales_data_silver,sales_data_silver,customer_segment,Direct,Type cast to VARCHAR; trim whitespace; handle nulls as empty string
+sales_data_bronze,sales_data_bronze.parquet,payment_method,sales_data_silver,sales_data_silver,payment_method,Direct,Type cast to VARCHAR; trim whitespace; handle nulls as empty string
+sales_data_bronze,sales_data_bronze.parquet,_load_timestamp,sales_data_silver,sales_data_silver,_load_timestamp,Direct,Type cast to TIMESTAMP; standardise to ISO 8601 format (YYYY-MM-DD HH:MM:SS)
+sales_data_bronze,sales_data_bronze.parquet,_source_file,sales_data_silver,sales_data_silver,_source_file,Direct,Type cast to VARCHAR; retain original value
+stores_bronze,stores_bronze.parquet,,stores_silver,stores_silver,pk_stores_silver_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+stores_bronze,stores_bronze.parquet,store_id,stores_silver,stores_silver,store_id,Direct,Type cast to INTEGER; retain original value
+stores_bronze,stores_bronze.parquet,store_name,stores_silver,stores_silver,store_name,Direct,Type cast to VARCHAR; trim whitespace; handle nulls as empty string
+stores_bronze,stores_bronze.parquet,region,stores_silver,stores_silver,region,Direct,Type cast to VARCHAR; trim whitespace; handle nulls as empty string
+stores_bronze,stores_bronze.parquet,city,stores_silver,stores_silver,city,Direct,Type cast to VARCHAR; trim whitespace; handle nulls as empty string
+stores_bronze,stores_bronze.parquet,state,stores_silver,stores_silver,state,Direct,Type cast to VARCHAR; trim whitespace; handle nulls as empty string
+stores_bronze,stores_bronze.parquet,_load_timestamp,stores_silver,stores_silver,_load_timestamp,Direct,Type cast to TIMESTAMP; standardise to ISO 8601 format (YYYY-MM-DD HH:MM:SS)
+stores_bronze,stores_bronze.parquet,_source_file,stores_silver,stores_silver,_source_file,Direct,Type cast to VARCHAR; retain original value

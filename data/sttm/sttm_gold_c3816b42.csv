@@ -1,0 +1,18 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+gold,,,gold,payment_method_analysis,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,sales_data_silver,payment_method,gold,payment_method_analysis,payment_method,Direct,Passthrough from sales_data_silver.payment_method
+silver,sales_data_silver,transaction_id,gold,payment_method_analysis,transaction_count,Indirect,COUNT(transaction_id) grouped by payment_method to determine usage frequency
+silver,sales_data_silver,total_amount,gold,payment_method_analysis,total_transaction_amount,Indirect,SUM(total_amount) grouped by payment_method for monetary analysis
+silver,sales_data_silver,quantity,gold,payment_method_analysis,total_quantity,Indirect,SUM(quantity) grouped by payment_method
+silver,sales_data_silver,transaction_date,gold,payment_method_analysis,transaction_date,Direct,Passthrough from sales_data_silver.transaction_date for temporal analysis
+silver,sales_data_silver,customer_segment,gold,payment_method_analysis,customer_segment,Direct,Passthrough from sales_data_silver.customer_segment for segmentation analysis
+silver,sales_data_silver,category,gold,payment_method_analysis,product_category,Direct,Passthrough from sales_data_silver.category for category-level analysis
+silver,sales_data_silver,store_id,gold,payment_method_analysis,store_id,Direct,Passthrough from sales_data_silver.store_id for store-level joins
+silver,sales_data_silver,product_id,gold,payment_method_analysis,product_id,Direct,Passthrough from sales_data_silver.product_id for product-level analysis
+silver,sales_data_silver,product_name,gold,payment_method_analysis,product_name,Direct,Passthrough from sales_data_silver.product_name
+silver,sales_data_silver,_load_timestamp,gold,payment_method_analysis,load_timestamp,Direct,Passthrough from sales_data_silver._load_timestamp for data lineage
+silver,stores_silver,store_id,gold,payment_method_analysis,fk_store_id,Indirect,Join key: sales_data_silver.store_id = stores_silver.store_id
+silver,stores_silver,store_name,gold,payment_method_analysis,store_name,Direct,Passthrough from stores_silver.store_name via store_id join
+silver,stores_silver,region,gold,payment_method_analysis,region,Direct,Passthrough from stores_silver.region via store_id join
+silver,products_silver,product_id,gold,payment_method_analysis,fk_product_id,Indirect,Join key: sales_data_silver.product_id = products_silver.product_id
+silver,products_silver,standard_price,gold,payment_method_analysis,standard_price,Direct,Passthrough from products_silver.standard_price via product_id join

@@ -1,0 +1,21 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,products,product_id,bronze,products,product_id,direct_copy,Copy source column as-is; primary key identifier
+landing,products,product_name,bronze,products,product_name,direct_copy,Copy source column as-is; string value
+landing,products,category,bronze,products,category,direct_copy,Copy source column as-is; categorical value
+landing,products,standard_price,bronze,products,standard_price,direct_copy,Copy source column as-is; numeric float value in USD
+landing,sales_data,transaction_id,bronze,sales_data,transaction_id,direct_copy,Copy source column as-is; handle 4.3% null values; preserve TXN and RET prefixes
+landing,sales_data,transaction_date,bronze,sales_data,transaction_date,direct_copy,Copy source column as-is; preserve inconsistent date formats (MM/DD/YYYY and YYYY-MM-DD)
+landing,sales_data,store_id,bronze,sales_data,store_id,direct_copy,Copy source column as-is; foreign key reference; handle 2.69% null values
+landing,sales_data,product_id,bronze,sales_data,product_id,direct_copy,Copy source column as-is; foreign key reference to products table
+landing,sales_data,product_name,bronze,sales_data,product_name,direct_copy,Copy source column as-is; denormalized product name
+landing,sales_data,category,bronze,sales_data,category,direct_copy,Copy source column as-is; denormalized category; preserve inconsistency between 'Sports' and 'Sport'
+landing,sales_data,quantity,bronze,sales_data,quantity,direct_copy,Copy source column as-is; integer value; includes negative values for returns
+landing,sales_data,unit_price,bronze,sales_data,unit_price,direct_copy,Copy source column as-is; numeric float in USD; may vary from standard_price due to promotions
+landing,sales_data,total_amount,bronze,sales_data,total_amount,direct_copy,Copy source column as-is; numeric float; includes negative values for returns
+landing,sales_data,customer_segment,bronze,sales_data,customer_segment,direct_copy,Copy source column as-is; categorical value; 16 unique segments
+landing,sales_data,payment_method,bronze,sales_data,payment_method,direct_copy,Copy source column as-is; categorical value; 4 unique payment methods
+landing,stores,store_id,bronze,stores,store_id,direct_copy,Copy source column as-is; primary key identifier
+landing,stores,store_name,bronze,stores,store_name,direct_copy,Copy source column as-is; string value
+landing,stores,region,bronze,stores,region,direct_copy,Copy source column as-is; categorical value; 4 unique regions
+landing,stores,city,bronze,stores,city,direct_copy,Copy source column as-is; string value; 10 unique cities
+landing,stores,state,bronze,stores,state,direct_copy,Copy source column as-is; string value; 9 unique state codes

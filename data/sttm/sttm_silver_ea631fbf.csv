@@ -1,0 +1,30 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+products_bronze,products_bronze.parquet,,products_silver,products_silver,pk_products_silver_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+products_bronze,products_bronze.parquet,product_id,products_silver,products_silver,product_id,Direct,Type cast to STRING; handle nulls as invalid records
+products_bronze,products_bronze.parquet,product_name,products_silver,products_silver,product_name,Direct,Trim whitespace; handle nulls as 'UNKNOWN'; deduplicate on product_id
+products_bronze,products_bronze.parquet,category,products_silver,products_silver,category,Direct,Trim whitespace; handle nulls as 'UNCATEGORIZED'; standardise to uppercase
+products_bronze,products_bronze.parquet,standard_price,products_silver,products_silver,standard_price,Direct,"Type cast to DECIMAL(10,2); handle nulls as 0.00; validate non-negative"
+products_bronze,products_bronze.parquet,_load_timestamp,products_silver,products_silver,_load_timestamp,Direct,Type cast to TIMESTAMP; standardise to UTC; handle nulls as current_timestamp
+products_bronze,products_bronze.parquet,_source_file,products_silver,products_silver,_source_file,Direct,Trim whitespace; handle nulls as 'UNKNOWN_SOURCE'
+sales_data_bronze,sales_data_bronze.parquet,,sales_data_silver,sales_data_silver,pk_sales_data_silver_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+sales_data_bronze,sales_data_bronze.parquet,transaction_id,sales_data_silver,sales_data_silver,transaction_id,Direct,Type cast to STRING; handle nulls as invalid records
+sales_data_bronze,sales_data_bronze.parquet,transaction_date,sales_data_silver,sales_data_silver,transaction_date,Direct,Type cast to DATE; standardise format to YYYY-MM-DD; handle nulls as invalid records
+sales_data_bronze,sales_data_bronze.parquet,store_id,sales_data_silver,sales_data_silver,store_id,Direct,Type cast to STRING; handle nulls as invalid records
+sales_data_bronze,sales_data_bronze.parquet,product_id,sales_data_silver,sales_data_silver,product_id,Direct,Type cast to STRING; handle nulls as invalid records
+sales_data_bronze,sales_data_bronze.parquet,product_name,sales_data_silver,sales_data_silver,product_name,Direct,Trim whitespace; handle nulls as 'UNKNOWN'
+sales_data_bronze,sales_data_bronze.parquet,category,sales_data_silver,sales_data_silver,category,Direct,Trim whitespace; handle nulls as 'UNCATEGORIZED'; standardise to uppercase
+sales_data_bronze,sales_data_bronze.parquet,quantity,sales_data_silver,sales_data_silver,quantity,Direct,Type cast to INTEGER; handle nulls as 0; validate non-negative
+sales_data_bronze,sales_data_bronze.parquet,unit_price,sales_data_silver,sales_data_silver,unit_price,Direct,"Type cast to DECIMAL(10,2); handle nulls as 0.00; validate non-negative"
+sales_data_bronze,sales_data_bronze.parquet,total_amount,sales_data_silver,sales_data_silver,total_amount,Direct,"Type cast to DECIMAL(10,2); handle nulls as 0.00; validate non-negative"
+sales_data_bronze,sales_data_bronze.parquet,customer_segment,sales_data_silver,sales_data_silver,customer_segment,Direct,Trim whitespace; handle nulls as 'UNKNOWN'; standardise to uppercase
+sales_data_bronze,sales_data_bronze.parquet,payment_method,sales_data_silver,sales_data_silver,payment_method,Direct,Trim whitespace; handle nulls as 'UNKNOWN'; standardise to uppercase
+sales_data_bronze,sales_data_bronze.parquet,_load_timestamp,sales_data_silver,sales_data_silver,_load_timestamp,Direct,Type cast to TIMESTAMP; standardise to UTC; handle nulls as current_timestamp
+sales_data_bronze,sales_data_bronze.parquet,_source_file,sales_data_silver,sales_data_silver,_source_file,Direct,Trim whitespace; handle nulls as 'UNKNOWN_SOURCE'
+stores_bronze,stores_bronze.parquet,,stores_silver,stores_silver,pk_stores_silver_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+stores_bronze,stores_bronze.parquet,store_id,stores_silver,stores_silver,store_id,Direct,Type cast to STRING; handle nulls as invalid records
+stores_bronze,stores_bronze.parquet,store_name,stores_silver,stores_silver,store_name,Direct,Trim whitespace; handle nulls as 'UNKNOWN'; deduplicate on store_id
+stores_bronze,stores_bronze.parquet,region,stores_silver,stores_silver,region,Direct,Trim whitespace; handle nulls as 'UNKNOWN'; standardise to uppercase
+stores_bronze,stores_bronze.parquet,city,stores_silver,stores_silver,city,Direct,Trim whitespace; handle nulls as 'UNKNOWN'; standardise to uppercase
+stores_bronze,stores_bronze.parquet,state,stores_silver,stores_silver,state,Direct,Trim whitespace; handle nulls as 'UNKNOWN'; standardise to uppercase
+stores_bronze,stores_bronze.parquet,_load_timestamp,stores_silver,stores_silver,_load_timestamp,Direct,Type cast to TIMESTAMP; standardise to UTC; handle nulls as current_timestamp
+stores_bronze,stores_bronze.parquet,_source_file,stores_silver,stores_silver,_source_file,Direct,Trim whitespace; handle nulls as 'UNKNOWN_SOURCE'

@@ -1,0 +1,16 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+gold,,,gold,best_selling_products,pk_gold_id,Indirect,Auto-generated sequential surrogate primary key starting from 1
+silver,sales_data_silver,product_name,gold,best_selling_products,product_name,Direct,Passthrough from sales_data_silver.product_name
+silver,sales_data_silver,product_id,gold,best_selling_products,product_id,Direct,Passthrough from sales_data_silver.product_id
+silver,sales_data_silver,category,gold,best_selling_products,category,Direct,Passthrough from sales_data_silver.category
+silver,sales_data_silver,quantity,gold,best_selling_products,total_quantity_sold,Indirect,SUM(quantity) WHERE quantity > 0 grouped by product_name to determine best selling product by volume
+silver,sales_data_silver,total_amount,gold,best_selling_products,total_revenue,Indirect,SUM(total_amount) WHERE total_amount > 0 grouped by product_name to determine best selling product by revenue
+silver,products_silver,standard_price,gold,best_selling_products,standard_price,Direct,Passthrough from products_silver.standard_price via join on product_name
+silver,sales_data_silver,transaction_date,gold,best_selling_products,transaction_date,Direct,Passthrough from sales_data_silver.transaction_date for temporal analysis
+silver,sales_data_silver,customer_segment,gold,best_selling_products,customer_segment,Direct,Passthrough from sales_data_silver.customer_segment for segmentation analysis
+silver,sales_data_silver,payment_method,gold,best_selling_products,payment_method,Direct,Passthrough from sales_data_silver.payment_method
+silver,stores_silver,store_name,gold,best_selling_products,store_name,Direct,Passthrough from stores_silver.store_name via join on store_id
+silver,stores_silver,region,gold,best_selling_products,region,Direct,Passthrough from stores_silver.region via join on store_id for regional analysis
+silver,sales_data_silver,store_id,gold,best_selling_products,store_id,Direct,Join key: sales_data_silver.store_id = stores_silver.store_id
+silver,products_silver,product_name,gold,best_selling_products,fk_product_name,Indirect,Join key: sales_data_silver.product_name = products_silver.product_name
+silver,sales_data_silver,transaction_id,gold,best_selling_products,transaction_id,Direct,Passthrough from sales_data_silver.transaction_id for transaction-level detail

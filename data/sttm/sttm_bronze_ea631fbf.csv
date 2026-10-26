@@ -1,0 +1,21 @@
+source_schema,source_table,source_column,target_schema,target_table,target_column,transformation_type,transformation_logic
+landing,products,product_id,bronze,products,product_id,direct_copy,Copy source value as-is; primary key identifier
+landing,products,product_name,bronze,products,product_name,direct_copy,Copy source value as-is
+landing,products,category,bronze,products,category,direct_copy,Copy source value as-is
+landing,products,standard_price,bronze,products,standard_price,direct_copy,Copy source value as-is; float64 type preserved
+landing,sales_data,transaction_id,bronze,sales_data,transaction_id,direct_copy,Copy source value as-is; preserve 8 null values (4.3%)
+landing,sales_data,transaction_date,bronze,sales_data,transaction_date,direct_copy,Copy source value as-is; preserve mixed date formats (MM/DD/YYYY and YYYY-MM-DD)
+landing,sales_data,store_id,bronze,sales_data,store_id,direct_copy,Copy source value as-is; preserve 5 null values (2.69%); foreign key to stores table
+landing,sales_data,product_id,bronze,sales_data,product_id,direct_copy,Copy source value as-is; foreign key to products table
+landing,sales_data,product_name,bronze,sales_data,product_name,direct_copy,Copy source value as-is; denormalized column
+landing,sales_data,category,bronze,sales_data,category,direct_copy,Copy source value as-is; denormalized column with 21 unique values (data quality issue)
+landing,sales_data,quantity,bronze,sales_data,quantity,direct_copy,Copy source value as-is; int64 type preserved; range -4 to +8; negative values indicate returns/adjustments
+landing,sales_data,unit_price,bronze,sales_data,unit_price,direct_copy,"Copy source value as-is; float64 type preserved; range $0.01 to $9,999.99"
+landing,sales_data,total_amount,bronze,sales_data,total_amount,direct_copy,"Copy source value as-is; float64 type preserved; range -$1,230.56 to +$9,999.99; negative values indicate returns"
+landing,sales_data,customer_segment,bronze,sales_data,customer_segment,direct_copy,Copy source value as-is; 16 unique values observed; denormalized column
+landing,sales_data,payment_method,bronze,sales_data,payment_method,direct_copy,"Copy source value as-is; 4 payment methods identified (Apple Pay, PayPal, etc.)"
+landing,stores,store_id,bronze,stores,store_id,direct_copy,Copy source value as-is; primary key identifier
+landing,stores,store_name,bronze,stores,store_name,direct_copy,Copy source value as-is
+landing,stores,region,bronze,stores,region,direct_copy,"Copy source value as-is; 4 regions identified (Northeast, Southeast, Midwest, West)"
+landing,stores,city,bronze,stores,city,direct_copy,Copy source value as-is
+landing,stores,state,bronze,stores,state,direct_copy,Copy source value as-is; 9 unique state abbreviations (2-letter codes)

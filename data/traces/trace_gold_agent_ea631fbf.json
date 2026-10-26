@@ -1,0 +1,42 @@
+[
+  {
+    "agent": "gold_agent",
+    "run_id": "ea631fbf-9616-4528-8b0a-91f718be88c9",
+    "started_at": "2026-10-26T06:35:58.517779+00:00",
+    "input": {
+      "input_files": [
+        "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\silver_layer\\products_silver.parquet",
+        "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\silver_layer\\sales_data_silver.parquet",
+        "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\silver_layer\\stores_silver.parquet"
+      ],
+      "sttm_path": "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\sttm\\sttm_gold_ea631fbf.csv"
+    },
+    "plan": "",
+    "tool_calls": [],
+    "reasoning_steps": [],
+    "output": {},
+    "duration_seconds": 14.384,
+    "status": "failed",
+    "error": "datetime64 type does not support operation 'sum'"
+  },
+  {
+    "agent": "gold_agent",
+    "run_id": "ea631fbf-9616-4528-8b0a-91f718be88c9",
+    "started_at": "2026-10-26T06:41:45.956843+00:00",
+    "input": {
+      "input_files": [
+        "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\silver_layer\\products_silver.parquet",
+        "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\silver_layer\\sales_data_silver.parquet",
+        "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\silver_layer\\stores_silver.parquet"
+      ],
+      "sttm_path": "C:\\Users\\sangrpatil\\OneDrive - Deloitte (O365D)\\Documents\\Anthropic AI\\IDAMP\\data\\sttm\\sttm_gold_ea631fbf.csv"
+    },
+    "plan": "",
+    "tool_calls": [],
+    "reasoning_steps": [],
+    "output": {},
+    "duration_seconds": 12.366,
+    "status": "failed",
+    "error": "datetime64 type does not support operation 'sum'"
+  }
+]
